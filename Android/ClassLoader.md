@@ -12,15 +12,19 @@ ClassLoader有三个直接子类BootClassLoader，BaseDexClassLoader，SecureCla
 BaseDexClassLoader的直接子类有直接子类是 PathClassLoader 和 DexClassLoader (Android O添加了 InMemoryDexClassLoader)
 
 ##BootClassLoader
+
 BootClassLoader是ClassLoader的内部类，在系统启动时创建，是系统最顶层的ClassLoader，当一个类没有加载器时，默认获取此加载器。
 ##PathClassLoader
+
 PathClassLoader 在应用启动时创建，一般从 data/app/… 安装目录下加载 apk 文件
 ##DexClassLoader
+
 DexClassLoader支持从任何目录加载包含.dex的apk，jar文件，多个文件用分隔符分隔；
 
 
 
 #ClassLoader双亲委托模型
+
 当类加载器在收到加载类或资源的请求时，通常会先委托给父加载器加载，只有当父加载器找不到指定的类或者资源时，自身才会执行实际的类加载过程。
 
 
@@ -36,6 +40,7 @@ ClassLoader执行loadClass的流程：
 2. 不同继承路线上的ClassLoader加载的类便不再相同，这样的限制避免了用户自己的代码冒充核心类库的类访问核心类库包可见成员的情况。
 
 #双亲委托模型在热修复中的应用
+
 热修复就是想办法让系统加载我们修复后的dex，从而达到修复目的。
 
 原理：
@@ -48,6 +53,7 @@ ClassLoader执行loadClass的流程：
 
 
 #参考
+
 [热修复实现：ClassLoader 方式的实现](https://jaeger.itscoder.com/android/2016/09/20/nuva-source-code-analysis)
 
 [热修复入门：Android 中的 ClassLoader](https://jaeger.itscoder.com/android/2016/08/27/android-classloader.html)
